@@ -39,13 +39,14 @@ export const SITE = {
  * names below (or change the paths). While a file is missing, the site shows a
  * clearly labelled placeholder — it never invents product details.
  */
+const BASE = import.meta.env.BASE_URL
 export const PRODUCT_IMAGES = {
-  hero: '/images/product/hexa-ai-hero.png',
-  front: '/images/product/hexa-ai-front.jpg',
-  side: '/images/product/hexa-ai-side.jpg',
-  led: '/images/product/hexa-ai-led-closeup.jpg',
-  unboxing: '/images/product/hexa-ai-unboxing.jpg',
-  accessories: '/images/product/hexa-ai-accessories.jpg',
+  hero: BASE + 'images/product/hexa-ai-hero.png',
+  front: BASE + 'images/product/hexa-ai-front.jpg',
+  side: BASE + 'images/product/hexa-ai-side.jpg',
+  led: BASE + 'images/product/hexa-ai-led-closeup.jpg',
+  unboxing: BASE + 'images/product/hexa-ai-unboxing.jpg',
+  accessories: BASE + 'images/product/hexa-ai-accessories.jpg',
 } as const
 
 export type NavItem = { label: string; href: string; id: string }

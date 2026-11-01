@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #050608;
+  --panel: #0b0e14;
+  --electric: #287bff;
+  --sky: #69b5ff;
+  --mute: #a1a8b3;
+  color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: #fff;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(40, 123, 255, 0.45);
+  color: #fff;
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1b2333 var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-y {
+    @apply py-24 sm:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.28em] text-sky;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-8 bg-gradient-to-r from-transparent to-sky;
+  }
+
+  .h-display {
+    @apply font-display font-bold uppercase leading-[0.98] tracking-tight;
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, #fff 10%, #69b5ff 55%, #287bff 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px -25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(105, 181, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(105, 181, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
+  }
+
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-[15px] text-white placeholder:text-mute/60 transition-colors duration-200;
+  }
+  .input:hover {
+    @apply border-white/20;
+  }
+  .input:focus {
+    @apply border-electric bg-white/[0.05] outline-none;
+    box-shadow: 0 0 0 4px rgba(40, 123, 255, 0.15);
+  }
+  .input[aria-invalid='true'] {
+    @apply border-red-400/70;
+  }
+}
+
+/* Reduced motion: neutralise all CSS animation / transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--electric);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
